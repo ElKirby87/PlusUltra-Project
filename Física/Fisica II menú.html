@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        body {
+            background-image: url(../Resources/FisicaMenuBack.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .temario {
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        .Unidades {
+            cursor: pointer;
+            background-color: none;
+            color: white;
+            padding: 10px;
+            margin: 0;
+            border: none;
+            text-align: left;
+            outline: none;
+            transition: background-color 0.2s;
+        }
+
+        .Unidades:hover {
+            background-color: #0056b3;
+        }
+
+        .Temas {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .Temas li {
+            background-color: #f1f1f1;
+            padding: 12px;
+            font-size: 24px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        button {
+            margin: 0;
+            height: auto;
+            width: 270px;
+            height: 25px;
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="temario">
+        <h2 class="Unidades" onclick="toggleSubtemas('Unidad I')">Unidad I</h2>
+        <ul id="Unidad I" class="Temas">
+            <li>
+                <a href="Vectores.html" target="_self">
+                    <button value="Fisica">Vectores</button>
+                </a>
+            </li>
+            <li>
+                <a href="EquilibrioTr.html" target="_self">
+                    <button value="Fisica">Equilibrio Translacional</button>
+                </a>
+            </li>
+            <li>
+                <a href="EquilibrioRo.html" target="_self">
+                    <button value="Fisica">Equilibrio Rotacional</button>
+                </a>
+            </li>
+        </ul>
+        <h2 class="Unidades" onclick="toggleSubtemas('Unidad II')">Unidad II</h2>
+        <ul id="Unidad II" class="Temas">
+            <li>
+                <a href="Materia.html" target="_self">
+                    <button value="Fisica">Estados de Agregación de la Materia</button>
+                </a>
+            </li>
+            <li>
+                <a href="Hooke.html" target="_self">
+                    <button value="Fisica">Ley de Hooke</button>
+                </a>
+            </li>
+            <li>
+                <a href="Calorimetria.html" target="_self">
+                    <button value="Fisica">Calorímetria</button>
+                </a>
+            </li>
+            <li>
+                <a href="Dilatacion.html" target="_self">
+                    <button value="Fisica">Dilatación</button>
+                </a>
+            </li>
+        </ul>
+        <h2 class="Unidades" onclick="toggleSubtemas('Unidad III')">Unidad III</h2>
+        <ul id="Unidad III" class="Temas">
+            <li>
+                <a href="CalorSL.html" target="_self">
+                    <button value="Fisica">Calor Sensible y Calor Latente</button>
+                </a>
+            </li>
+            <li>
+                <a href="Gases.html" target="_self">
+                    <button value="Fisica">Leyes de los gases</button>
+                </a>
+            </li>
+            <li>
+                <a href="DenyPE.html" target="_self">
+                    <button value="Fisica">Líquidos</button>
+                </a>
+            </li>
+            <li>
+                <a href="Pascal.html" target="_self">
+                    <button value="Fisica">Teorema de Pascal</button>
+                </a>
+            </li>
+            <li>
+                <a href="Arquimides.html" target="_self">
+                    <button value="Fisica">Principio de Arquímides</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <script>
+        function toggleSubtemas(id) { 
+            var element = document.getElementById(id); 
+            if (element.style.maxHeight) { 
+                element.style.maxHeight = null; 
+            } 
+            else { 
+                element.style.maxHeight = element.scrollHeight + "px"; 
+            } 
+        }
+    </script>
+</body>
+</html>

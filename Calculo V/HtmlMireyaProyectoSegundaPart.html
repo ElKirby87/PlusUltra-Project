@@ -1,0 +1,588 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fórmulas Matemáticas</title><!-- Define el título que aparece en la pestaña del navegador -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><!-- Incluye un polyfill para compatibilidad con navegadores antiguos -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> <!-- Incluye MathJax para renderizar expresiones matemáticas -->
+    <!-- Estilos CSS para la página -->
+    <style>
+        /* Aplica estilo general a toda la página */
+        body {
+            font-family: Arial, sans-serif; /* Establece la fuente para todo el texto */
+            margin: 0; /* Quita márgenes predeterminados */
+            padding: 0; /* Quita relleno predeterminado */
+            background-color: #f4f4f4; /* Define un fondo gris claro */
+            color: #333; /* Define el color del texto en gris oscuro */
+        }
+
+        /* Estilo para el encabezado principal */
+        header {
+            background-color: #4caf50; /* Fondo verde */
+            color: white; /* Texto blanco */
+            padding: 20px; /* Relleno interno */
+            text-align: center; /* Centra el contenido */
+        }
+
+        /* Estilo para el menú de navegación */
+        nav ul {
+            display: flex; /* Crea un diseño flexible */
+            flex-wrap: wrap; /* Permite que los elementos se ajusten en varias filas si es necesario */
+            justify-content: center; /* Centra los elementos horizontalmente */
+            background-color: #333; /* Fondo oscuro */
+            padding: 10px; /* Relleno interno */
+            list-style: none; /* Elimina los puntos de la lista */
+            margin: 0; /* Elimina márgenes */
+        }
+
+            nav ul li { /* Aplica estilo a cada elemento de la lista */
+                margin: 0 15px; /* Añade un margen horizontal entre los enlaces */
+            }
+
+                nav ul li a { /* Estilo para los enlaces del menú */
+                    color: white; /* Texto blanco */
+                    text-decoration: none; /* Elimina el subrayado de los enlaces */
+                    font-weight: bold; /* Hace que el texto sea negrita */
+                }
+
+        /* Estilo para el contenido principal */
+        main {
+            padding: 20px; /* Espaciado interno */
+        }
+
+        /* Estilo para los títulos secundarios */
+        h2 {
+            color: #4caf50; /* Color verde para los encabezados */
+            border-bottom: 2px solid #ccc; /* Línea debajo del encabezado */
+            padding-bottom: 5px; /* Espaciado debajo del texto */
+        }
+
+        /* Bloques de fórmulas con estilo */
+        .formula-block {
+            background: #e8f5e9; /* Fondo verde claro */
+            padding: 10px; /* Relleno interno */
+            border-radius: 5px; /* Bordes redondeados */
+            margin: 10px 0; /* Margen vertical entre bloques */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+        }
+
+        /* Estilo para bloques de ejemplos */
+        .example-block {
+            background: #fffde7; /* Fondo amarillo claro */
+            padding: 10px; /* Relleno interno */
+            border: 1px solid #ffeb3b; /* Bordes amarillos */
+            border-radius: 5px; /* Bordes redondeados */
+            margin-top: 5px; /* Margen superior */
+            margin-bottom: 10px; /* Margen inferior */
+        }
+
+        /* Estilo para el pie de página */
+        footer {
+            text-align: center; /* Centra el texto */
+            background: #333; /* Fondo oscuro */
+            color: white; /* Texto blanco */
+            padding: 10px; /* Relleno interno */
+        }
+
+        /* Botón flotante para regresar al inicio */
+        .back-to-top {
+            position: fixed; /* Posición fija en la pantalla */
+            bottom: 20px; /* Distancia desde la parte inferior */
+            right: 20px; /* Distancia desde la derecha */
+            background-color: #4caf50; /* Fondo verde */
+            color: white; /* Texto blanco */
+            padding: 10px 15px; /* Espaciado interno */
+            border-radius: 50%; /* Forma circular */
+            text-decoration: none; /* Sin subrayado */
+            font-size: 20px; /* Tamaño de texto */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra */
+        }
+
+            /* Cambio de color al pasar el cursor por el botón */
+            .back-to-top:hover {
+                background-color: #45a049; /* Verde más oscuro */
+            }
+
+        /* Estilo general para secciones */
+        section {
+            margin-top: 30px; /* Espaciado superior */
+            padding: 20px; /* Relleno interno */
+            background-color: #ffffff; /* Fondo blanco */
+            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+        }
+
+            section h2 { /* Encabezados dentro de las secciones */
+                text-align: center; /* Centra el texto */
+                margin-bottom: 15px; /* Espaciado inferior */
+            }
+
+        .back-to-top:hover { /* Te manda hacia el inicio, arriba*/
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <a href="#top" class="back-to-top">↑ Volver al inicio</a><!-- Botón para regresar al inicio -->
+    <header>
+        <h1>Fórmulas Matemáticas</h1> <!-- Título principal de la página -->
+        <p>Un Formulario completo de fórmulas avanzadas.</p> <!-- Descripción breve -->
+    </header>
+    <nav>
+        <ul>
+            <!-- Lista de enlaces para navegar entre secciones -->
+            <li><a href="#areas">Áreas</a></li>
+            <li><a href="#volumenes">Volúmenes</a></li>
+            <li><a href="#funciones-ecuaciones">Funciones y Ecuaciones</a></li>
+            <li><a href="#potencias">Potencias</a></li>
+            <li><a href="#radicales">Radicales</a></li>
+            <li><a href="#trigonometria">Trigonometría</a></li>
+            <li><a href="#geometria">Geometría</a></li>
+            <li><a href="#logica">Lógica Proposicional</a></li>
+            <li><a href="#vectores">Vectores</a></li>
+            <li><a href="#estadistica">Estadística</a></li>
+            <li><a href="#sucesiones">Sucesiones</a></li>
+            <li><a href="#derivadas">Derivadas</a></li>
+            <li><a href="#conjuntos-probabilidad">Conjuntos y Probabilidad</a></li>
+            <li><a href="#logaritmos">Logaritmos</a></li>
+            <li><a href="#limites">Límites Especiales</a></li>
+            <li><a href="#integrales">Integrales</a></li>
+            <li><a href="#numeros-complejos">Números Complejos</a></li>
+        </ul>
+    </nav>
+    <main>
+        <!-- Aquí irían las secciones de contenido como Áreas, Volúmenes, etc. -->
+        <!-- Áreas -->
+        <section id="areas">
+            <h2>Áreas</h2>
+            <div class="formula-block">
+                <p>Área de un cuadrado:</p>
+                <p>\( A = l^2 \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Área de un rectángulo:</p>
+                <p>\( A = b \cdot h \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Área de un triángulo:</p>
+                <p>\( A = \frac{b \cdot h}{2} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Área de un círculo:</p>
+                <p>\( A = \pi r^2 \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Área de un trapecio:</p>
+                <p>\( A = \frac{(B + b) \cdot h}{2} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Área de un rombo:</p>
+                <p>\( A = \frac{D \cdot d}{2} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Área de un elipse:</p>
+                <p>\( A = \pi \cdot a \cdot b \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Área lateral de un cono:</p>
+                <p>\( A = \pi r g \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Área superficial de una esfera:</p>
+                <p>\( A = 4 \pi r^2 \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Área de un cilindro (superficial):</p>
+                <p>\( A = 2\pi r^2 + 2\pi r h \)</p>
+            </div>
+        </section>
+
+        <!-- Volúmenes -->
+        <section id="volumenes">
+            <h2>Volúmenes</h2>
+            <div class="formula-block">
+                <p>Volumen de un cubo:</p>
+                <p>\( V = l^3 \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Volumen de un prisma rectangular:</p>
+                <p>\( V = l \cdot w \cdot h \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Volumen de una esfera:</p>
+                <p>\( V = \frac{4}{3} \pi r^3 \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Volumen de un cono:</p>
+                <p>\( V = \frac{1}{3} \pi r^2 h \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Volumen de un cilindro:</p>
+                <p>\( V = \pi r^2 h \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Volumen de un tetraedro:</p>
+                <p>\( V = \frac{a^3}{6 \sqrt{2}} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Volumen de un octaedro:</p>
+                <p>\( V = \frac{\sqrt{2}}{3} a^3 \)</p>
+            </div>
+        </section>
+
+        <!-- Funciones y Ecuaciones -->
+        <section id="funciones-ecuaciones">
+            <h2>Funciones y Ecuaciones</h2>
+            <div class="formula-block">
+                <p>Ecuación cuadrática:</p>
+                <p>\( ax^2 + bx + c = 0 \)</p>
+                <p>Solución de la ecuación cuadrática (fórmula general):</p>
+                <p>\( x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Fórmula de la distancia entre dos puntos en el plano:</p>
+                <p>\( d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Punto medio de dos puntos:</p>
+                <p>\( M = \left( \frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2} \right) \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Ecuación de la recta:</p>
+                <p>\( y = mx + b \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Solución de ecuaciones lineales (sistema):</p>
+                <p>\( \begin{cases} ax + by = c \\ dx + ey = f \end{cases} \)</p>
+            </div>
+        </section>
+
+        <!-- Trigonometría -->
+        <section id="trigonometria">
+            <h2>Trigonometría</h2>
+            <div class="formula-block">
+                <p>Identidad trigonométrica básica:</p>
+                <p>\( \sin^2\theta + \cos^2\theta = 1 \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Teorema de Pitágoras:</p>
+                <p>\( c^2 = a^2 + b^2 \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Identidades trigonométricas:</p>
+                <p>\( \tan\theta = \frac{\sin\theta}{\cos\theta} \)</p>
+                <p>\( \sec\theta = \frac{1}{\cos\theta} \)</p>
+                <p>\( \csc\theta = \frac{1}{\sin\theta} \)</p>
+                <p>\( \cot\theta = \frac{1}{\tan\theta} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Ángulos dobles:</p>
+                <p>\( \sin(2\theta) = 2\sin\theta\cos\theta \)</p>
+                <p>\( \cos(2\theta) = \cos^2\theta - \sin^2\theta \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Ángulos medios:</p>
+                <p>\( \sin\left(\frac{\theta}{2}\right) = \pm \sqrt{\frac{1 - \cos\theta}{2}} \)</p>
+                <p>\( \cos\left(\frac{\theta}{2}\right) = \pm \sqrt{\frac{1 + \cos\theta}{2}} \)</p>
+            </div>
+        </section>
+
+        <!-- Geometría -->
+        <section id="geometria">
+            <h2>Geometría</h2>
+            <div class="formula-block">
+                <p>Perímetro de un rectángulo:</p>
+                <p>\( P = 2(l + w) \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Área de un polígono regular:</p>
+                <p>\( A = \frac{P \cdot a}{2} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Suma de los ángulos interiores de un polígono de \( n \) lados:</p>
+                <p>\( S = 180^\circ (n - 2) \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Teorema de Tales:</p>
+                <p>Si un triángulo está inscrito en un círculo, entonces el ángulo inscrito en un semicírculo es recto.</p>
+            </div>
+            <div class="formula-block">
+                <p>Teorema de Ptolemaeo (cuadrilátero cíclico):</p>
+                <p>\( AC \cdot BD = AB \cdot CD + AD \cdot BC \)</p>
+            </div>
+        </section>
+
+        <!-- Lógica Proposicional -->
+        <section id="logica-proposicional">
+            <h2>Lógica Proposicional</h2>
+            <div class="formula-block">
+                <p>Conjunción (Y):</p>
+                <p>\( A \land B \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Disyunción (O):</p>
+                <p>\( A \lor B \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Negación (No):</p>
+                <p>\( \neg A \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Implicación (Si... entonces):</p>
+                <p>\( A \to B \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Equivalencia (Si y solo si):</p>
+                <p>\( A \iff B \)</p>
+            </div>
+        </section>
+
+        <!-- Vectores -->
+        <section id="vectores">
+            <h2>Vectores</h2>
+            <div class="formula-block">
+                <p>Magnitud de un vector:</p>
+                <p>\( |v| = \sqrt{x^2 + y^2} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Producto punto:</p>
+                <p>\( v \cdot w = |v| |w| \cos\theta \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Producto cruz (vectorial):</p>
+                <p>\( v \times w = |v| |w| \sin\theta \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Componente del vector:</p>
+                <p>\( v_x = v \cdot \cos \theta \), \( v_y = v \cdot \sin \theta \)</p>
+            </div>
+        </section>
+
+
+        <!-- Estadística -->
+        <section id="estadistica">
+            <h2>Estadística</h2>
+            <div class="formula-block">
+                <p>Media aritmética:</p>
+                <p>\( \bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Varianza:</p>
+                <p>\( \sigma^2 = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2 \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Desviación estándar:</p>
+                <p>\( \sigma = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Coeficiente de variación:</p>
+                <p>\( CV = \frac{\sigma}{\bar{x}} \cdot 100 \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Covarianza:</p>
+                <p>\( \text{Cov}(X, Y) = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Correlación de Pearson:</p>
+                <p>\( r = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Distribución normal:</p>
+                <p>\( f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Distribución binomial:</p>
+                <p>\( P(X = k) = \binom{n}{k} p^k (1 - p)^{n-k} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Distribución de Poisson:</p>
+                <p>\( P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!} \)</p>
+            </div>
+        </section>
+
+        <!-- Sucesiones -->
+        <section id="sucesiones">
+            <h2>Sucesiones</h2>
+            <div class="formula-block">
+                <p>Sucesión aritmética:</p>
+                <p>\( a_n = a_1 + (n - 1) d \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Suma de los primeros \(n\) términos de una sucesión aritmética:</p>
+                <p>\( S_n = \frac{n}{2} \left( 2a_1 + (n - 1) d \right) \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Sucesión geométrica:</p>
+                <p>\( a_n = a_1 \cdot r^{n-1} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Suma de los primeros \(n\) términos de una sucesión geométrica:</p>
+                <p>\( S_n = a_1 \frac{1 - r^n}{1 - r}, \quad r \neq 1 \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Límite de una sucesión geométrica:</p>
+                <p>\( \lim_{n \to \infty} a_n = \frac{a_1}{1 - r}, \quad |r| < 1 \)</p>
+            </div>
+        </section>
+
+        <!-- Derivada -->
+        <section id="derivada">
+            <h2>Derivada</h2>
+            <div class="formula-block">
+                <p>Definición de derivada:</p>
+                <p>\( f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Derivada de una constante:</p>
+                <p>\( \frac{d}{dx} c = 0 \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Derivada de \( x^n \):</p>
+                <p>\( \frac{d}{dx} x^n = n x^{n-1} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Regla del producto:</p>
+                <p>\( \frac{d}{dx} (u \cdot v) = u' v + u v' \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Regla del cociente:</p>
+                <p>\( \frac{d}{dx} \left(\frac{u}{v}\right) = \frac{v u' - u v'}{v^2} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Derivada de \( e^x \):</p>
+                <p>\( \frac{d}{dx} e^x = e^x \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Derivada de \( \ln(x) \):</p>
+                <p>\( \frac{d}{dx} \ln(x) = \frac{1}{x} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Derivada de \( \sin(x) \):</p>
+                <p>\( \frac{d}{dx} \sin(x) = \cos(x) \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Derivada de \( \cos(x) \):</p>
+                <p>\( \frac{d}{dx} \cos(x) = -\sin(x) \)</p>
+            </div>
+        </section>
+
+        <!-- Conjuntos y Probabilidad -->
+        <section id="conjuntos-probabilidad">
+            <h2>Conjuntos y Probabilidad</h2>
+            <div class="formula-block">
+                <p>Cardinalidad de un conjunto:</p>
+                <p>\( |A| = n \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Unión de conjuntos:</p>
+                <p>\( A \cup B = \{ x : x \in A \text{ o } x \in B \} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Intersección de conjuntos:</p>
+                <p>\( A \cap B = \{ x : x \in A \text{ y } x \in B \} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Probabilidad de un evento:</p>
+                <p>\( P(A) = \frac{\text{Número de eventos favorables}}{\text{Número de eventos posibles}} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Probabilidad condicional:</p>
+                <p>\( P(A | B) = \frac{P(A \cap B)}{P(B)} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Teorema de Bayes:</p>
+                <p>\( P(A | B) = \frac{P(B | A) P(A)}{P(B)} \)</p>
+            </div>
+        </section>
+
+        <!-- Logaritmo -->
+        <section id="logaritmo">
+            <h2>Logaritmo</h2>
+            <div class="formula-block">
+                <p>Definición de logaritmo:</p>
+                <p>\( \log_b(x) = y \quad \text{si y solo si} \quad b^y = x \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Propiedad del logaritmo:</p>
+                <p>\( \log_b(xy) = \log_b(x) + \log_b(y) \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Logaritmo de una potencia:</p>
+                <p>\( \log_b(x^y) = y \log_b(x) \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Cambio de base:</p>
+                <p>\( \log_b(x) = \frac{\log_a(x)}{\log_a(b)} \)</p>
+            </div>
+        </section>
+
+        <!-- Límites Especiales -->
+        <section id="limites">
+            <h2>Límites Especiales</h2>
+            <div class="formula-block">
+                <p>Límite de una constante:</p>
+                <p>\( \lim_{x \to a} c = c \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Límite de \( x^n \):</p>
+                <p>\( \lim_{x \to a} x^n = a^n \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Límite de una fracción:</p>
+                <p>\( \lim_{x \to a} \frac{f(x)}{g(x)} = \frac{\lim_{x \to a} f(x)}{\lim_{x \to a} g(x)} \)</p>
+            </div>
+        </section>
+
+        <!-- Integrales -->
+        <section id="integrales">
+            <h2>Integrales</h2>
+            <div class="formula-block">
+                <p>Definición de la integral:</p>
+                <p>\( \int_{a}^{b} f(x) dx \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Integral de una constante:</p>
+                <p>\( \int c \, dx = cx + C \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Integral de \( x^n \):</p>
+                <p>\( \int x^n \, dx = \frac{x^{n+1}}{n+1} + C, \quad n \neq -1 \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Teorema fundamental del cálculo:</p>
+                <p>\( \int_{a}^{b} f'(x) dx = f(b) - f(a) \)</p>
+            </div>
+        </section>
+
+        <!-- Números Complejos -->
+        <section id="numeros-complejos">
+            <h2>Números Complejos</h2>
+            <div class="formula-block">
+                <p>Forma estándar de un número complejo:</p>
+                <p>\( z = a + bi \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Conjugado de un número complejo:</p>
+                <p>\( \overline{z} = a - bi \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Producto de números complejos:</p>
+                <p>\( (a + bi)(c + di) = (ac - bd) + (ad + bc)i \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Módulo de un número complejo:</p>
+                <p>\( |z| = \sqrt{a^2 + b^2} \)</p>
+            </div>
+            <div class="formula-block">
+                <p>Forma polar de un número complejo:</p>
+                <p>\( z = r(\cos \theta + i \sin \theta) \)</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Matemáticas Simplificadas | Hecho con ❤ por Gabriel, Josue, Daniel y Elizabeth.</p>
+    </footer>
+</body>
+</html>
+

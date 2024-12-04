@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style type="text/css">
+        body {
+            background-image: url(../Resources/FisicaIndiceBackground.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .tema {
+            text-align: center;
+            color: white;
+            font-family: 'Palatino Linotype';
+            font-size: 48px;
+            margin-top: 10px;
+        }
+
+        .subtema {
+            text-align: center;
+            color: #aac1ff;
+            font-family: 'Palatino Linotype';
+            font-size: 30px;
+        }
+
+        .contenido {
+            width: 80%;
+            margin: 0, auto;
+        }
+
+        .contenido p, ul {
+            text-align: justify;
+            font-size: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <p class="tema">Equilibrio Translacional</p>
+    <p class="subtema">¿Qué es?</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    El equilibrio translacional es un concepto fundamento en física que se refiere al moviemiento de un objeto
+                    en una dimensión, sin rotación ni oscilación.
+                    Ocurre cuando la suma de las fuerzas que actúan sobre un objeto es igual a cero, lo que significa que el objeto
+                    no experimenta aceleración ni deceleración en su movimiento.
+                    Un ejercicio de ejemplo es el siguiente: Un semáforo que tiene una masa de 50 kg cuelga de dos cable. Calcula la
+                    fuerza que necesitan tener los dos cables para estar en equilibrio. El ejercicio nos da un diagrama con el semaforo
+                    y los cables que están anclados a una pared y a un techo formando unos angulos.<br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="../Resources/EqulibrioTras.jpg" height="300" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    <b>El procedimiento a realizar es el siguiente:</b><br />
+                    Tendremos que representar en un plano cartesiano todas las fuerzas que se ejercen por medio de los vectores
+                    respetando las direcciones de las fuerzas, ya sea la fuerza de la gravedad que va totalmente hacia abajo, como
+                    la dirección de las fuerzas que ejercen los cablen en contra a la fuerza de la gravedad. También tendremos que colocar
+                    las magnitudes de los vectores (Si no conocemos las magnitudes les asignamos un nombre a la incognita como si se tratara
+                    de una variable) y también sú dirección (Podremos hallar sus ángulos gracias a las bases en las que estan anclados los
+                    cables y los ángulos que se forman tomando en cuenta si están en paralelo con la linea de las coordenadas Y o de las X).
+                    Luego usamos una formula que es la sumatoria de todas las tensiones en X es igual a 0 y que de todas las tensiones en Y
+                    sumadas es igual a 0.<br />
+                    Σx = T1x + T2x = 0<br />
+                    Σy = T1y + T2y - T3y = 0<br />
+                    Y la formula para calcular tensiones es la siguiente:<br />
+                    Tx = Cosθ * F<br />
+                    Ty = Sen * F<br />
+                    Esas mismas fórmulas las repetimos por la cantidad de tensiones que tenemos.<br />
+                    Y usando esa misma fórmula con todas las tensiones respetando las incógnitas, podremos despejas y hallar las
+                    tensiones o los datos que no sabemos.<br />
+                    Lo anterior se trata del método por componentes.
+                </p>
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Método por Triángulo de Fuerzas</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    Éste método como su nombre lo dice, utilizaremos un triángulo donde la medida de sus ángulos sean las magnitudes que
+                    tengamos.<br />
+                    Este método se aplica después del prmer paso, que es el representar todas las fuerzas aplicadas por medio del plano
+                    cartesiano y después, como si de piezas se tratase, acomodamos nuestos vectores para que formen un triángulo, por ejemplo,
+                    el vector de la fuerza hacia abajo primero, luego irá el vector que esta jalando la fuerza hacia arriba a la derecha y por
+                    ultimo, el vector que está aplicando la fuerza hacia arriba a la izquierda.<br />
+                    Una vez hecho nuestro triángulo nos quedaría aplicar la fórmula de la ley de senos, que su condición nos dice que solo se usará
+                    en el caso de que conozcamos un lado y dos de los ángulos del triángulo.<br />
+                </p>
+                <p id="formulas"></p>
+                <p>
+                    Y como último paso, se va a despejar la fórmula conforme la incógnita.
+                </p>
+            </td>
+        </tr>
+    </table>
+    <script>
+        document.getElementById('formulas').innerHTML = "\\( \\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} \\)";
+    </script>
+</body>
+</html>

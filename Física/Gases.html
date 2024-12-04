@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style type="text/css">
+        body {
+            background-image: url(../Resources/Unidad3Tema.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .tema {
+            text-align: center;
+            color: white;
+            font-family: 'Palatino Linotype';
+            font-size: 48px;
+            margin-top: 10px;
+        }
+
+        .subtema {
+            text-align: center;
+            color: #aac1ff;
+            font-family: 'Palatino Linotype';
+            font-size: 30px;
+        }
+
+        .contenido {
+            width: 80%;
+            margin: 0, auto;
+        }
+
+            .contenido p, ul {
+                text-align: justify;
+                font-size: 24px;
+                color: white;
+            }
+    </style>
+</head>
+<body>
+    <p class="tema">Leyes de los Gases</p>
+    <p class="subtema">Ley de Charles</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    El principio físico conocido de la ley de Charles establece que el volumen de un gas es igual a un valor
+                    constante multiplicado por su temperatura medida en la escala Kelvin (cero Kelvin corresponde a -273.15
+                    grados Celsius).<br />
+                    Y se utiliza la siguiente fórmula:
+                </p>
+                <p id="formulas"></p>
+                <p>
+                    Dónde:<br />
+                    To = Temperatura inicial.<br />
+                    Tf = Temperatura final.<br />
+                    Vo = Volumen inicial.<br />
+                    Vf = Volumen final.<br />
+                </p>
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Ley de Boyle</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    La ley de Boyle es una ley de los gases, que establece que la presión y el volumen de un gas tienen una
+                    relación inversa. Si el volumen aumenta, entonces la presión disminuye y viceversa, cuando la temperatura
+                    se mantiene constante.
+                </p>
+                <p>Po * Vo = Pf * Vf</p>
+                <p>
+                    Dónde:<br />
+                    Po = Presión inicial.<br />
+                    Pf = Presión final.<br />
+                    Vo = Volumen inicial.<br />
+                    Vf = Volumen final.<br />
+                </p>
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Ley de Gay-Lussac</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    Establece la relación entre la temperatura y la presión de un gas cuando el volumen es constante. La
+                    presión del gas es directamente proporcional a su temperatura: Si aumentamos la temperatura, aumentará
+                    la presión. Si disminuimos la temperatura, disminuirá la presión.
+                </p>
+                <p id="formulas1"></p>
+                <p>
+                    Dónde:<br />
+                    Po = Presión inicial.<br />
+                    Pf = Presión final.
+                </p>
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Ley General del Estado Gaseoso</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    La ecuación general del estado gaseoso es una combinación de las ecuaciones antes mencionadas, donde
+                    nuevamente las variables a encontrar son la presión, temperatura o volumen del gas, cuando se tiene un
+                    cambio entre dos variables.<br />
+                    La expresión matemática, o fórmula de la ecuación general del estado gaseoso, es la siguiente:
+                </p>
+                <p id="formulas2"></p>
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Ley de los Gases Ideales</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    La ley de los gases ideales, también conocida como la ecuación de estado de los gases ideales, es una
+                    ley de la física que describe el comportamiento de un gas ideal bajo ciertas condiciones. Un gas ideal
+                    es un modelo simplificado que cumple con las siguientes suposiciones:
+                </p>
+                <p>PV = nRT</p>
+                <p>
+                    Dónde:<br />
+                    Po = Presión inicial.<br />
+                    V = Volumen.<br />
+                    n = Cantidad de Sustancia.<br />
+                    R = Constante de los Gases Ideales.<br />
+                    T = Temperatura.
+                </p>
+            </td>
+        </tr>
+    </table>
+    <script>
+        document.getElementById('formulas').innerHTML = "\\( \\frac{Vo}{To} = \\frac{Vf}{Tf} \\)";
+        document.getElementById('formulas1').innerHTML = "\\( \\frac{Po}{To} = \\frac{Pf}{Tf} \\)";
+        document.getElementById('formulas2').innerHTML = "\\( \\frac{PoVo}{To} = \\frac{PfVf}{Tf} \\)";
+    </script>
+</body>
+</html>

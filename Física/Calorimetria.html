@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style type="text/css">
+        body {
+            background-image: url(../Resources/Unidad3Tema.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .tema {
+            text-align: center;
+            color: white;
+            font-family: 'Palatino Linotype';
+            font-size: 48px;
+            margin-top: 10px;
+        }
+
+        .subtema {
+            text-align: center;
+            color: #aac1ff;
+            font-family: 'Palatino Linotype';
+            font-size: 30px;
+        }
+
+        .contenido {
+            width: 80%;
+            margin: 0, auto;
+        }
+
+            .contenido p, ul {
+                text-align: justify;
+                font-size: 24px;
+                color: white;
+            }
+    </style>
+</head>
+<body>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p id="formulas"></p>
+            </td>
+        </tr>
+    </table>
+    <script>
+        document.getElementById('formulas').innerHTML = "\\( \\frac{C°}{5} \\)";
+    </script>
+</body>
+</html>

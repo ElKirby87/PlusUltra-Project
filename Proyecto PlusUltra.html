@@ -5,48 +5,71 @@
     <meta charset="utf-8" />
     <title></title>
     <style type="text/css">
+        body {
+            background-image: url(Resources/MenuBackground.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
         .fisicaButton {
-            background-image: url(Physics.jpg);
+            background-image: url(Resources/Physics.jpg);
             background-size: cover;
             font-size: 80px;
-            font-family: 'Palatino Linotype';
+            font-family: 'Courier New', Courier, monospace;
             color: white;
-            width: 750px;
-            height: 250px;
+            width: 650px;
+            height: 150px;
+            border-radius: 25px;
         }
         .calculoButton {
-            background-image: url(Pitagoras.jpeg);
+            background-image: url(Resources/Pitagoras.jpeg);
             background-size: cover;
             font-size: 75px;
-            font-family: 'Palatino Linotype';
+            font-family: 'Courier New', Courier, monospace;
             color: white;
-            width: 750px;
-            height: 250px;
+            width: 650px;
+            height: 150px;
+            border-radius: 25px;
+        }
+        .playquizButton {
+            background-color: rgba(0, 123, 255, 0.25);
+            font-size: 50px;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            width: 325px;
+            height: 75px;
+            border-radius: 25px;
         }
         .menuTable {
             align-items: center;
-            margin-top: 150px;
+            margin-top: 90px;
         }
     </style>
 </head>
 <body> 
     <table align="center" class="menuTable">
         <tr>
-            
-            <td>  <a href="Fisica II.html" target="_blank">
-             <button class="fisicaButton" value="Fisica">Fisica II</button></a></td>
+            <td>
+                <a href="Física/Fisica II menú.html" target="_self">
+                    <button class="fisicaButton" value="Fisica">Fisica</button>
+                </a>
+            </td>
         </tr>
         <tr>
-            <td><a href="Calculo V.html" target="_blank">
-             <button class="calculoButton" value="Calculo V">Calculo V</button></td>
+            <td>
+                <a href="Calculo V/PaginaProyectoFinalMireya.html" target="_self">
+                    <button class="calculoButton" value="Calculo V">Calculo V</button>
+            </td>
+        </tr>
+    </table>
+    <table align="center" class="menuTable">
+        <tr>
+            <td>
+                <a href="PlayQuiz/AppFisicaCalculoMireya.html" target="_self">
+                    <button class="playquizButton" value="Quiz">Quiz</button>
+            </td>
         </tr>
     </table>
     <br />
-    <p id="parrafo">sdasdasdasdsdasdasdasd</p>
-    <script type="text/javascript">
-        function example() {
-            document.getElementById('parrafo') = "UWU";
-        }
-    </script>
 </body>
 </html>

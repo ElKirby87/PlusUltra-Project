@@ -1,0 +1,454 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+ <!-- Define el tipo de documento y el idioma como español -->
+<head>
+    <meta charset="UTF-8"> <!-- Especifica la codificación de caracteres en UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que el diseño sea adaptable a diferentes tamaños de pantalla -->
+    <title>Quiz Personalizado</title> <!-- Título que aparece en la pestaña del navegador -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"> <!-- Importa iconos de FontAwesome -->
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!-- Proporciona soporte para características modernas de JavaScript en navegadores más antiguos -->
+    <script type="text/javascript" id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> <!-- Importa MathJax para renderizar ecuaciones matemáticas en formato LaTeX -->
+
+
+    <style>
+        /* Estilo general del cuerpo de la página */
+        body {
+            font-family: Arial, sans-serif; /* Fuente del texto */
+            background-color: #1f2847; /* Color de fondo oscuro */
+            color: white; /* Color del texto blanco */
+            display: flex; /* Usa un diseño flexbox */
+            justify-content: center; /* Centra horizontalmente el contenido */
+            align-items: center; /* Centra verticalmente el contenido */
+            min-height: 100vh; /* Altura mínima de la ventana */
+            margin: 0; /* Elimina márgenes del cuerpo */
+        }
+
+        /* Contenedor principal del quiz */
+        .container {
+            max-width: 600px; /* Ancho máximo del contenedor */
+            background: #2d3b55; /* Color de fondo del contenedor */
+            color: white; /* Color del texto dentro del contenedor */
+            border-radius: 10px; /* Bordes redondeados */
+            padding: 30px; /* Espaciado interno */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra alrededor del contenedor */
+        }
+
+        /* Botones generales */
+        .btn {
+            background: #0c80ef; /* Color de fondo azul */
+            border: none; /* Sin borde */
+            color: white; /* Color del texto */
+            padding: 10px; /* Espaciado interno */
+            margin-top: 20px; /* Margen superior */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            border-radius: 5px; /* Bordes redondeados */
+            width: 100%; /* Ancho completo del botón */
+            font-size: 16px; /* Tamaño de la fuente */
+        }
+
+            /* Estilo al pasar el cursor sobre el botón */
+            .btn:hover {
+                background: #0a6bc5; /* Cambia a un azul más oscuro */
+            }
+
+        /* Esconde las pantallas de preguntas y de fin por defecto */
+        .question-wrapper, .end-screen {
+            display: none; /* Oculta estas secciones inicialmente */
+        }
+
+        /* Estilo para las respuestas de las preguntas */
+        .answer {
+            background: #3f4868; /* Fondo gris azulado */
+            padding: 10px; /* Espaciado interno */
+            margin: 10px 0; /* Margen vertical entre respuestas */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            transition: 0.3s; /* Transición suave para los cambios de estilo */
+            display: flex; /* Hace que sea un contenedor flexible */
+            justify-content: center; /* Centra el contenido horizontalmente */
+            align-items: center; /* Centra el contenido verticalmente */
+        }
+
+            /* Cambia el color de fondo al pasar el cursor sobre una respuesta */
+            .answer:hover {
+                background: #575f85;
+            }
+
+            /* Estilo para respuestas correctas */
+            .answer.correct {
+                background: #0cef2a; /* Color verde */
+            }
+
+            /* Estilo para respuestas incorrectas */
+            .answer.wrong {
+                background: #fc3939; /* Color rojo */
+            }
+
+        /* Estilo general para los campos de entrada y selección */
+        input, select {
+            margin: 10px 0; /* Margen vertical */
+            padding: 10px; /* Espaciado interno */
+            width: 100%; /* Ancho completo */
+            background: #3f4868; /* Fondo gris azulado */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+        }
+
+        /* Estilo específico para elementos de selección */
+        select {
+            cursor: pointer; /* Cambia el cursor al pasar sobre el elemento */
+        }
+
+        /* Estilo para ecuaciones matemáticas */
+        .mathjax {
+            font-size: 18px; /* Tamaño de la fuente */
+            text-align: center; /* Centra el texto */
+        }
+
+        /* Estilo para el temporizador */
+        .timer {
+            font-size: 20px; /* Tamaño de la fuente */
+            margin-bottom: 10px; /* Espaciado inferior */
+            text-align: center; /* Centra el texto */
+        }
+
+        /* Contenedor del temporizador visual */
+        .timer-wrapper {
+            position: relative; /* Posicionamiento relativo */
+            width: 100%; /* Ancho completo */
+            height: 20px; /* Altura del temporizador */
+            background-color: #3f4868; /* Fondo gris azulado */
+            border-radius: 10px; /* Bordes redondeados */
+            overflow: hidden; /* Oculta cualquier contenido que se salga */
+        }
+
+        /* Barra del temporizador */
+        .timer-bar {
+            height: 100%; /* Altura completa */
+            width: 100%; /* Ancho completo al inicio */
+            background-color: #0c80ef; /* Color azul */
+            border-radius: 10px; /* Bordes redondeados */
+            transition: width 1s linear; /* Disminución suave del ancho */
+        }
+
+            /* Cambia a rojo cuando queda poco tiempo */
+            .timer-bar.warning {
+                background-color: #fc3939;
+                animation: pulse 1s infinite; /* Efecto de pulsación */
+            }
+
+        /* Animación para el efecto de pulsación */
+        @keyframes pulse {
+            0% {
+                transform: scaleX(1); /* Escala inicial */
+            }
+
+            50% {
+                transform: scaleX(1.05); /* Aumenta ligeramente el tamaño */
+            }
+
+            100% {
+                transform: scaleX(1); /* Regresa al tamaño inicial */
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="timer-sound" src="C:\Users\HP\Downloads\360941__marcusgar__tic-tac (1).mp3" preload="auto"></audio>
+    <audio id="correct-sound" src="C:\Users\HP\AppData\Local\Temp\AweZip\Temp1\AweZip4\Quiz-correct-sound-with-applause.mp3" preload="auto"></audio>
+    <audio id="wrong-sound" src="C:\Users\HP\AppData\Local\Temp\AweZip\Temp1\AweZip5\Sad-trumpet-sound-effect.mp3" preload="auto"></audio>
+
+
+    <div class="container">
+        <!-- Pantalla de configuración -->
+        <div class="config-screen">
+            <h1>Configuración del Quiz</h1>
+            <label for="time">Tiempo para cada pregunta (en segundos):</label>
+            <input type="number" id="time" min="5" max="60" value="20">
+            <label for="num-questions">Número de preguntas:</label>
+            <input type="number" id="num-questions" min="1" max="10" value="5">
+            <label for="category">Selecciona categoría:</label>
+            <select id="category">
+                <option value="calculo">Cálculo V</option>
+                <option value="fisica">Física</option>
+            </select>
+            <button class="btn start">Iniciar Quiz</button>
+        </div>
+
+        <!-- Pantalla del quiz -->
+        <div class="question-wrapper">
+            <div class="timer">Tiempo restante: <span id="time-left"></span> segundos</div>
+            <div class="timer-wrapper">
+                <div id="timer-bar" class="timer-bar"></div>
+            </div>
+            <h2 class="question mathjax">Pregunta aquí</h2>
+            <div class="answers"></div>
+            <div class="message" id="message"></div>
+            <button class="btn next" disabled>Siguiente</button>
+        </div>
+
+        <!-- Pantalla de fin -->
+        <div class="end-screen">
+            <h2>¡Quiz Terminado!</h2>
+            <p>Puntuación: <span class="score">0</span> / <span class="total">0</span></p>
+            <button class="btn restart">Reiniciar</button>
+        </div>
+    </div>
+
+    <script>
+        const questionsData = {// Datos de preguntas organizados por categorías
+            fisica: [
+                {
+                    question: "¿Qué es un vector?",
+                    answers: ["Solo es una flecha y ya", "Es una magnitud", "Solo son coordenadas", "Son ángulos"],
+                    correct: 1
+                }, // Respuesta correcta: la segunda
+                {
+                    question: "¿Qué describe el principio de conservación de la energía?",
+                    answers: ["La energía nunca se pierde, solo se transforma", "La energía se pierde con el tiempo", "La energía es infinita", "La energía depende de la masa"],
+                    correct: 0
+                },// Respuesta correcta: la primera
+                {
+                    question: "Su forma y volumen es constante, se trata de:",
+                    answers: ["Un líquido", "Un gas", "Un plasma", "Un sólido"],
+                    correct: 3
+                }, // Respuesta correcta: la tercera
+                {
+                    question: "Cuál es la fórmula de la densidad?",
+                    answers: ["\\( \\frac{Peso}{Volumen} \\)", "Do = Df", "\\( \\frac{Masa}{Volumen} \\)", "\\( \\frac{Vo}{To} = \\frac{Vf}{Tf} \\)"],
+                    correct: 2
+                }, // Respuesta correcta: la tercera
+                {
+                    question: "¿Cuál es la fórmula del peso específico?",
+                    answers: ["\\( \\frac{Peso}{Volumen} \\)", "Do = Df", "\\( \\frac{Masa}{Volumen} \\)", "\\( \\frac{Vo}{To} = \\frac{Vf}{Tf} \\)"],
+                    correct: 0
+                }, // Respuesta correcta: la primera
+                {
+                    question: "¿Cuál es la fórmula de la Ley de Charles?",
+                    answers: ["\\( \\frac{Vo}{To} = \\frac{Vf}{Tf} \\)", "\\( \\frac{Po}{To} = \\frac{Pf}{Tf} \\)", "\\( \\frac{PoVo}{To} = \\frac{PfVf}{Tf} \\)", "Po * Vo = Pf * Vf"],
+                    correct: 0
+                }, // Respuesta correcta: la primera
+                {
+                    question: "¿Cuál es la fórmula de la Ley de Boyle?",
+                    answers: ["\\( \\frac{Vo}{To} = \\frac{Vf}{Tf} \\)", "\\( \\frac{Po}{To} = \\frac{Pf}{Tf} \\)", "\\( \\frac{PoVo}{To} = \\frac{PfVf}{Tf} \\)", "Po * Vo = Pf * Vf"],
+                    correct: 3
+                }, // Respuesta correcta: la cuarta
+                {
+                    question: "¿Cuál es la fórmula de la Ley de Gay-Lussac?",
+                    answers: ["\\( \\frac{Vo}{To} = \\frac{Vf}{Tf} \\)", "\\( \\frac{Po}{To} = \\frac{Pf}{Tf} \\)", "\\( \\frac{PoVo}{To} = \\frac{PfVf}{Tf} \\)", "Po * Vo = Pf * Vf"],
+                    correct: 1
+                }, // Respuesta correcta: la segunda
+                {
+                    question: "¿Cuál es la fórmula de la Ley General de los Gases?",
+                    answers: ["\\( \\frac{Vo}{To} = \\frac{Vf}{Tf} \\)", "\\( \\frac{Po}{To} = \\frac{Pf}{Tf} \\)", "\\( \\frac{PoVo}{To} = \\frac{PfVf}{Tf} \\)", "Po * Vo = Pf * Vf"],
+                    correct: 2
+                }, // Respuesta correcta: la tercera
+                {
+                    question: "La sumatoria de todas las tensiones en X y en Y es igual a cero. Esto se trata de:",
+                    answers: ["Ley de Hooke", "Equilibrio Traslacional", "Equilibrio Rotacional", "Módulo de Young"],
+                    correct: 1
+                }, // Respuesta correcta: la segunda
+            ],
+            calculo: [
+                {
+                    question: "¿Cuál es el valor de \\(\\lim_{x \\to 0} \\frac{\\sin(x)}{x}\\)?",
+                    answers: ["\\(0\\)", "\\(1\\)", "\\(\\infty\\)", "\\(-1\\)"],
+                    correct: 1// Respuesta correcta: 1
+                },
+                {
+                    question: "¿Cuál es la derivada de \\(\\sqrt{x}\\)?",
+                    answers: ["\\(\\frac{1}{2\\sqrt{x}}\\)", "\\(2\\sqrt{x}\\)", "\\(\\frac{x}{2}\\)", "\\(\\sqrt{x}\\)"],
+                    correct: 0// Respuesta correcta: 0
+                },
+                {
+                    question: "Resuelve: \\(\\int_{0}^{1} x^2 dx\\)",
+                    answers: ["\\(1/3\\)", "\\(1/2\\)", "\\(1\\)", "\\(2/3\\)"],
+                    correct: 3// Respuesta correcta: 3
+                },
+                {
+                    question: "Resuelve \\( \\int x \\sin(x) \\, dx \\)",
+                    answers: ["\\( -x \\cos(x) + \\sin(x) + C \\)", "\\( \\cos(x) + x \\sin(x) + C \\)", "\\( x \\cos(x) - \\sin(x) + C \\)", "\\( -\\cos(x) - x \\sin(x) + C \\)"],
+                    correct: 0// Respuesta correcta: 0
+                },
+                {
+                    question: "Resuelve \\( \\int \\frac{\\ln(x)}{x^3} \\, dx \\)",
+                    answers: ["\\( -\\frac{1}{2x^2}(2 \\ln(x) + 1) + C \\)", "\\( \\frac{1}{2x^2} + C \\)", "\\( \\frac{\\ln(x)}{2x^3} + C \\)", "\\( \\ln(x)^2 + C \\)"],
+                    correct: 0// Respuesta correcta: 0
+                },
+                {
+                    question: "Resuelve \\( \\int (x^3 + 5x^2 - 2)e^{2x} \\, dx \\)",
+                    answers: ["Usar integración por partes", "Usar sustitución simple", "Usar integrales dobles", "No se puede resolver"],
+                    correct: 0 // Respuesta correcta: 0
+                },
+                {
+                    question: "Resuelve \\( \\int \\ln(x) \\, dx \\)",
+                    answers: ["\\( x(\\ln(x) - 1) + C \\)", "\\( \\ln(x)^2 + C \\)", "\\( \\frac{1}{x} + C \\)", "\\( \\ln(x) + C \\)"],
+                    correct: 0 // Respuesta correcta: 0
+                },
+                {
+                    question: "Halla la derivada de la función \\( y = x^4 + 3x^2 - 6 \\)",
+                    answers: ["\\( y' = 4x^3 + 6x \\)", "\\( y' = 4x^3 + 2 \\)", "\\( y' = 3x^2 + 6x - 6 \\)", "\\( y' = x^4 + 3x \\)"],
+                    correct: 0 // Respuesta correcta: 0
+                },
+                {
+                    question: "Halla la derivada de la función \\( y = 6x^3 - x^2 \\)",
+                    answers: ["\\( y' = 18x^2 - 2x \\)", "\\( y' = 6x^2 - 2 \\)", "\\( y' = 18x^2 \\)", "\\( y' = 6x^2 \\)"],
+                    correct: 0 // Respuesta correcta: 0
+                },
+                {
+                    question: "Halla la derivada de la función \\( y = \\frac{x^5}{a+b} - \\frac{x^2}{a-b} \\)",
+                    answers: ["\\( y' = \\frac{5x^4}{a+b} - \\frac{2x}{a-b} \\)", "\\( y' = \\frac{5x^4}{a+b} + \\frac{2x}{a-b} \\)", "\\( y' = \\frac{5x^3}{a+b} - \\frac{x}{a-b} \\)", "\\( y' = \\frac{x^4}{a+b} - \\frac{x^2}{a-b} \\)"],
+                    correct: 0 // Respuesta correcta: 0
+                },
+            ]
+        };
+        // Variables globales que controlan el estado del quiz
+        let currentQuestionIndex = 0;// Índice de la pregunta actual
+        let score = 0;// Puntuación acumulada
+        let timeLimit = 20;// Límite de tiempo por pregunta en segundos
+        let totalQuestions = 5; // Número total de preguntas a mostrar
+        let category = "calculo"; // Categoría seleccionada (por defecto: cálculo)
+        let timer;// Variable para manejar el temporizador
+
+        // Selección de elementos del DOM estructura de documento de html
+        const startScreen = document.querySelector('.config-screen');// Pantalla inicial de configuración
+        const questionWrapper = document.querySelector('.question-wrapper');// Contenedor de las preguntas
+        const endScreen = document.querySelector('.end-screen');// Pantalla final de resultados
+        const questionEl = document.querySelector('.question');// Elemento que muestra la pregunta
+        const answersEl = document.querySelector('.answers');// Contenedor de las respuestas
+        const nextBtn = document.querySelector('.next');// Botón "Siguiente"
+        const timerEl = document.getElementById('time-left');// Elemento que muestra el tiempo restante
+        const scoreEl = document.querySelector('.score');// Elemento que muestra la puntuación
+        const totalEl = document.querySelector('.total');// Elemento que muestra el total de preguntas
+        const messageEl = document.getElementById('message'); // Elemento para mensajes como "Correcto/Incorrecto"
+
+        // Configuración inicial al hacer clic en el botón de inicio
+        document.querySelector('.start').addEventListener('click', () => {
+            // Obtiene los valores configurados por el usuario
+            timeLimit = parseInt(document.getElementById('time').value);
+            totalQuestions = parseInt(document.getElementById('num-questions').value);
+            category = document.getElementById('category').value;
+
+            // Cambia a la pantalla de preguntas
+            startScreen.style.display = 'none';
+            questionWrapper.style.display = 'block';
+
+             // Muestra la primera pregunta
+            showQuestion();
+        });
+        // Función para mostrar una pregunta
+        const showQuestion = () => {
+            const questions = questionsData[category];// Obtiene las preguntas de la categoría seleccionada
+            const currentQuestion = questions[currentQuestionIndex];// Obtiene la pregunta actual
+            // Actualiza el contenido de la pregunta y limpia respuestas anteriores
+            questionEl.innerHTML = currentQuestion.question;
+            answersEl.innerHTML = '';
+            messageEl.textContent = '';
+            // Deshabilita el botón "Siguiente" hasta que el usuario seleccione una respuesta
+            nextBtn.disabled = true;
+            // Crea y muestra las opciones de respuesta
+            currentQuestion.answers.forEach((answer, index) => {
+                const answerDiv = document.createElement('div');
+                answerDiv.classList.add('answer', 'mathjax');
+                answerDiv.innerHTML = answer;
+                answerDiv.addEventListener('click', () => selectAnswer(answerDiv, index)); // Maneja la selección de respuesta
+                answersEl.appendChild(answerDiv);
+            });
+            MathJax.typeset();// Renderiza las expresiones matemáticas con MathJax
+            startTimer(); // Inicia el temporizador para esta pregunta
+        };
+        // Función para manejar el temporizador
+        const startTimer = () => {
+            let timeRemaining = timeLimit; // Tiempo restante para esta pregunta
+            const timerBar = document.getElementById('timer-bar'); // Barra de progreso
+            const timerText = document.getElementById('time-left'); // Texto con tiempo restante
+            const totalTime = timeLimit; // Tiempo total para calcular el porcentaje
+
+            timerBar.style.width = '100%'; // Inicializa la barra al 100%
+            timerText.textContent = timeRemaining; // Muestra el tiempo inicial
+            timerBar.classList.remove('warning'); // Asegura que no se muestre en modo "advertencia"
+
+            const timerSound = document.getElementById('timer-sound'); // Sonido del temporizador
+
+            clearInterval(timer); // Asegura que no haya otro temporizador en ejecución
+            timer = setInterval(() => {
+                timeRemaining--; // Reduce el tiempo restante
+                timerText.textContent = timeRemaining; // Actualiza el texto del temporizador
+                const width = (timeRemaining / totalTime) * 100;
+                timerBar.style.width = `${width}%`; // Ajusta la barra según el tiempo restante
+
+                timerSound.play(); // Reproduce un sonido de cuenta regresiva
+
+                if (timeRemaining === 5) {
+                    timerBar.classList.add('warning'); // Marca en rojo la barra cuando quedan 5 segundos
+                }
+
+                if (timeRemaining === 0) {
+                    clearInterval(timer); // Detiene el temporizador
+                    skipQuestion(); // Salta automáticamente a la siguiente pregunta
+                }
+            }, 1000); // Intervalo de 1 segundo
+        };
+
+
+
+        // Función para marcar automáticamente una pregunta como omitida
+        const skipQuestion = () => {
+            const answers = document.querySelectorAll('.answer');
+            answers.forEach(answer => answer.style.pointerEvents = 'none');
+            answersEl.querySelectorAll('.answer')[questionsData[category][currentQuestionIndex].correct].classList.add('correct');
+            nextBtn.disabled = false; // Habilita el botón "Siguiente"
+        };
+        const correctSound = document.getElementById('correct-sound'); // Obtiene el elemento de audio para el sonido de respuesta correcta.
+        const wrongSound = document.getElementById('wrong-sound'); // Obtiene el elemento de audio para el sonido de respuesta incorrecta.
+
+        // Maneja la selección de una respuesta
+        const selectAnswer = (selectedDiv, index) => {
+            clearInterval(timer); // Detiene el temporizador actual.
+            const questions = questionsData[category]; // Obtiene las preguntas de la categoría seleccionada.
+            const currentQuestion = questions[currentQuestionIndex]; // Obtiene la pregunta actual.
+            const answers = document.querySelectorAll('.answer'); // Obtiene todos los elementos de las respuestas.
+            answers.forEach(answer => answer.style.pointerEvents = 'none'); // Desactiva los clics en las respuestas.
+
+            if (index === currentQuestion.correct) {
+                selectedDiv.classList.add('correct'); // Marca la respuesta seleccionada como correcta (verde).
+                score++; // Incrementa el puntaje.
+                correctSound.play(); // Reproduce el sonido de respuesta correcta.
+            } else {
+                selectedDiv.classList.add('wrong'); // Marca la respuesta seleccionada como incorrecta (rojo).
+                answers[currentQuestion.correct].classList.add('correct'); // Muestra la respuesta correcta (verde).
+                wrongSound.play(); // Reproduce el sonido de respuesta incorrecta.
+            }
+            nextBtn.disabled = false; // Habilita el botón "Siguiente" para pasar a la siguiente pregunta.
+        };
+
+        // Pasa a la siguiente pregunta o finaliza el quiz
+        nextBtn.addEventListener('click', () => {
+            currentQuestionIndex++; // Incrementa el índice para pasar a la siguiente pregunta.
+            if (currentQuestionIndex < totalQuestions && currentQuestionIndex < questionsData[category].length) {
+                showQuestion(); // Muestra la siguiente pregunta si quedan preguntas disponibles.
+            } else {
+                endQuiz(); // Finaliza el quiz si no quedan preguntas.
+            }
+        });
+        // Función para finalizar el quiz
+        const endQuiz = () => {
+            questionWrapper.style.display = 'none'; // Oculta la pantalla de preguntas.
+            endScreen.style.display = 'block'; // Muestra la pantalla de resultados.
+            scoreEl.textContent = score; // Muestra el puntaje obtenido.
+            totalEl.textContent = totalQuestions; // Muestra el total de preguntas.
+        };
+
+
+        document.querySelector('.restart').addEventListener('click', () => {// Selecciona el botón con la clase 'restart' y agrega un evento 'click'
+            score = 0; // Reinicia la puntuación a 0 para comenzar desde el principio
+            currentQuestionIndex = 0;// Reinicia el índice de la pregunta actual a 0, volviendo a la primera pregunta
+            startScreen.style.display = 'block';  // Muestra la pantalla de inicio (configuración) estableciendo su estilo 'display' a 'block'
+            endScreen.style.display = 'none'; // Oculta la pantalla final (que muestra la puntuación) estableciendo su estilo 'display' a 'none'
+        });
+    </script>
+</body>
+</html>

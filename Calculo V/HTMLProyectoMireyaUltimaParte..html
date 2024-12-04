@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora</title>
+    <style>
+        /* Estilo global para todos los elementos */
+        * {
+            margin: 0; /* Elimina el margen predeterminado de todos los elementos */
+            box-sizing: border-box; /* Establece que el padding y el borde se incluyan en las dimensiones de los elementos */
+            font-family: sans-serif; /* Establece una fuente sin serifas */
+            transition: all 0.8s; /* Aplica una transición de 0.8 segundos en todas las propiedades */
+        }
+
+        /* Estilos para el cuerpo de la página */
+        body {
+            background: linear-gradient(45deg, #c30343, #ffffff); /* Fondo con un gradiente que va de rojo a blanco */
+        }
+
+        /* Estilo para el contenedor que contiene la calculadora */
+        .container {
+            width: 100vw; /* El contenedor ocupa el 100% del ancho de la ventana */
+            height: 100vh; /* El contenedor ocupa el 100% de la altura de la ventana */
+            display: flex; /* Usa Flexbox para organizar los elementos */
+            align-items: center; /* Centra los elementos de forma vertical */
+            justify-content: center; /* Centra los elementos de forma horizontal */
+        }
+
+        /* Estilo para la calculadora */
+        .calculator {
+            position: relative; /* Permite posicionar elementos dentro de la calculadora */
+            height: auto; /* Altura automática dependiendo del contenido */
+            width: auto; /* Ancho automático dependiendo del contenido */
+            padding: 20px; /* Espacio de 20px dentro de la calculadora */
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 0 30px rgb(187, 130, 130); /* Sombra suave de 30px alrededor de la calculadora */
+            background-color: #fff; /* Fondo blanco para la calculadora */
+        }
+
+        /* Estilo para el botón que cambia el tema */
+        .theme-toggler {
+            cursor: pointer; /* Cambia el cursor a una mano al pasar por encima */
+            position: absolute; /* Posiciona el botón en un lugar específico dentro de la calculadora */
+            right: 20px; /* 20px de distancia desde el borde derecho */
+            top: 20px; /* 20px de distancia desde el borde superior */
+            height: 30px; /* Altura de 30px */
+            width: 30px; /* Ancho de 30px */
+            background-color: #fff; /* Fondo blanco */
+            border-radius: 50%; /* Hace el botón circular */
+        }
+
+        /* Estilo para el display de la calculadora */
+        .display {
+            color: #c3e7f0; /* Color del texto en el display (azul claro) */
+            margin: 0 10px; /* Espaciado de 10px a los lados */
+            height: 120px; /* Altura del display */
+            width: auto; /* Ancho automático */
+            display: flex; /* Usa Flexbox para organizar los elementos dentro del display */
+            flex-wrap: wrap; /* Permite que los elementos se ajusten en varias líneas si es necesario */
+            align-items: flex-end; /* Alinea los elementos al final del display */
+            justify-content: flex-end; /* Justifica el contenido hacia la derecha */
+            font-size: 30px; /* Tamaño de la fuente */
+            margin-bottom: 20px; /* Margen inferior de 20px */
+            font-weight: 800; /* Establece el peso de la fuente a negrita */
+            border-radius: 15px; /* Bordes redondeados */
+        }
+
+        /* Estilos para los botones */
+        button {
+            border: 0; /* Elimina los bordes predeterminados de los botones */
+            border-radius: 50%; /* Hace que los botones sean circulares */
+            font-size: 20px; /* Tamaño de la fuente de los botones */
+            cursor: pointer; /* Cambia el cursor a una mano cuando se pasa sobre el botón */
+            transition: all 0.2s; /* Aplica una transición de 0.2 segundos en todas las propiedades */
+        }
+
+        /* Estilos para la cuadrícula de los botones */
+        .buttons {
+            display: grid; /* Usa CSS Grid para organizar los botones */
+            grid-template-columns: 60px 60px 60px 60px; /* Define 4 columnas de 60px */
+            grid-template-rows: 60px 60px 60px 60px 60px; /* Define 5 filas de 60px */
+            grid-gap: 11px; /* Espaciado de 11px entre los botones */
+            row-gap: 11px; /* Espaciado de 11px entre las filas */
+        }
+
+        /* Estilos al pasar el cursor sobre los botones */
+        button:hover {
+            transform: scale(1.1); /* Aumenta el tamaño del botón al pasar el cursor */
+        }
+
+        /* Estilo para los botones numéricos */
+        .btn-number {
+            background-color: #8EFDA6; /* Fondo verde claro */
+            color: #000000; /* Color del texto negro */
+        }
+
+        /* Estilo para los botones operadores */
+        .btn-operator {
+            background-color: #F0DB4F; /* Fondo amarillo */
+            color: #aa00a4; /* Color del texto morado */
+        }
+
+        /* Estilo para el botón de borrar (C) */
+        .clear {
+            background-color: #4C35AA; /* Fondo morado */
+            color: white; /* Texto blanco */
+        }
+
+        /* Estilo para el botón de igual (=) */
+        .btn-equal {
+            border-radius: 30px; /* Bordes más redondeados */
+            background-color: #F23B00; /* Fondo rojo */
+            color: #ffffff; /* Texto blanco */
+            grid-column-start: 4; /* Coloca este botón en la cuarta columna */
+            grid-row-start: 4; /* Coloca este botón en la cuarta fila */
+            grid-row-end: 6; /* El botón ocupa dos filas */
+        }
+
+        /* Estilos para el tema claro */
+        .display__light {
+            color: #000; /* Texto negro para el tema claro */
+        }
+
+        .dark {
+            background-color: #000; /* Fondo negro para el tema oscuro */
+        }
+
+        /* Estilos para los botones del tema claro */
+        .btn-number__light {
+            background-color: #85bddc; /* Fondo azul claro */
+        }
+
+        .btn-operator__light {
+            background-color: #e29edc; /* Fondo rosa claro */
+        }
+
+        .clear__light {
+            background-color: #ffd5d8; /* Fondo rosa pálido */
+            color: #fc4552; /* Texto rojo */
+        }
+
+        .btn-equal__light {
+            background-color: #49bda2; /* Fondo verde claro */
+            color: #000; /* Texto negro */
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor principal de la calculadora -->
+    <div class="container">
+        <!-- Calculadora con fondo oscuro por defecto -->
+        <div class="calculator dark">
+            <!-- Botón para cambiar el tema -->
+            <div class="theme-toggler">
+                <!-- Aquí va el ícono para cambiar el tema -->
+            </div>
+            <!-- Pantalla donde se muestra el resultado y las operaciones -->
+            <div class="display-screen">
+                <!-- Div donde se muestra el texto del display -->
+                <div id="display" class="display"></div>
+            </div>
+            <!-- Contenedor de los botones -->
+            <div class="buttons">
+                <!-- Botones de la calculadora -->
+                <button class="btn-operator clear" id="clear">C</button>
+                <button class="btn-operator operador" id="/">/</button>
+                <button class="btn-operator operador" id="*">*</button>
+                <button class="btn-operator" id="backspace"><</button>
+
+                <button class="btn-number" id="7">7</button>
+                <button class="btn-number" id="8">8</button>
+                <button class="btn-number" id="9">9</button>
+                <button class="btn-operator operador" id="-">-</button>
+
+                <button class="btn-number" id="4">4</button>
+                <button class="btn-number" id="5">5</button>
+                <button class="btn-number" id="6">6</button>
+                <button class="btn-operator operador" id="+">+</button>
+
+                <button class="btn-number" id="1">1</button>
+                <button class="btn-number" id="2">2</button>
+                <button class="btn-number" id="3">3</button>
+
+                <button class="btn-equal" id="equal">=</button>
+
+                <button class="btn-operator" id=".">.</button>
+                <button class="btn-number" id="0">0</button>
+                <button class="btn-operator" id="00">00</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script que maneja la lógica de la calculadora -->
+    <script>
+        const display = document.getElementById("display"); // Obtenemos el elemento del display
+        const buttons = document.querySelectorAll("button"); // Obtenemos todos los botones de la página
+        const themeTogglerBtn = document.querySelector(".theme-toggler"); // Obtenemos el botón para cambiar el tema
+        const calculator = document.querySelector(".calculator"); // Obtenemos la calculadora
+        const btnNumbers = document.querySelectorAll(".btn-number"); // Obtenemos todos los botones numéricos
+        const btnOperators = document.querySelectorAll(".btn-operator"); // Obtenemos todos los botones operadores
+        const btnClear = document.querySelector(".clear"); // Obtenemos el botón para limpiar
+        const btnEqual = document.querySelector(".btn-equal"); // Obtenemos el botón para igualar
+
+        const soundButton = new Audio("sound_button__sound (1).mp3"); // Ruta del sonido del botón
+        const soundChangeTheme = new Audio("sound_Long-Pop.wav"); // Ruta del sonido de cambio de tema
+
+        // Función para reproducir sonidos
+        const tocar = (audio) => {
+            try {
+                audio.pause(); // Pausa el audio
+                audio.currentTime = 0; // Reproduce desde el inicio
+                audio.play(); // Reproduce el sonido
+            } catch (error) {
+                console.error("Error al reproducir el sonido:", error); // Muestra el error si ocurre
+            }
+        };
+
+        // Función para manejar los eventos de los botones
+        buttons.forEach((item) => {
+            item.addEventListener("click", () => {
+                tocar(soundButton); // Reproduce el sonido de clic
+
+                if (item.id === "clear") {
+                    display.innerText = ""; // Borra el display
+                } else if (item.id === "backspace") {
+                    let string = display.innerText.toString();
+                    display.innerText = string.substring(0, string.length - 1); // Borra un carácter del display
+                } else if (display.innerText !== "" && item.id === "equal") {
+                    try {
+                        display.innerText = eval(display.innerText); // Evalúa la operación matemática
+                    } catch {
+                        display.innerText = "Error"; // Si hay error, muestra "Error"
+                        setTimeout(() => (display.innerText = ""), 2000); // Borra el "Error" después de 2 segundos
+                    }
+                } else if (display.innerText === "" && item.id === "equal") {
+                    display.innerText = "Null"; // Si no hay operación, muestra "Null"
+                    setTimeout(() => (display.innerText = ""), 2000); // Borra el "Null" después de 2 segundos
+                } else {
+                    display.innerText += item.id; // Agrega el número o operador al display
+                }
+
+                // Reemplaza expresiones inválidas
+                let texto = display.textContent;
+                texto = texto
+                    .replaceAll("//", "/")
+                    .replaceAll("++", "+")
+                    .replaceAll("--", "-")
+                    .replaceAll("**", "*")
+                    .replaceAll("..", ".")
+                    .replaceAll("+-", "-")
+                    .replaceAll("+*", "*")
+                    .replaceAll("+/", "/")
+                    .replaceAll("-+", "+")
+                    .replaceAll("-*", "*")
+                    .replaceAll("-/", "/")
+                    .replaceAll("*+", "+")
+                    .replaceAll("*-", "-")
+                    .replaceAll("*/", "/")
+                    .replaceAll("/+", "+")
+                    .replaceAll("/-", "-")
+                    .replaceAll("/*", "*")
+                    .replaceAll(".+", "+")
+                    .replaceAll(".-", "-")
+                    .replaceAll(".*", "*")
+                    .replaceAll("./", "/");
+
+                display.textContent = texto; // Muestra el texto limpio en el display
+            });
+        });
+
+        // Cambiar tema de la calculadora
+        themeTogglerBtn.addEventListener("click", () => {
+            tocar(soundChangeTheme); // Reproduce el sonido de cambio de tema
+            display.classList.toggle("display__light"); // Cambia el estilo del display
+            btnClear.classList.toggle("clear__light"); // Cambia el estilo del botón de limpiar
+            btnOperators.forEach((btnOperator) =>
+                btnOperator.classList.toggle("btn-operator__light") // Cambia el estilo de los botones operadores
+            );
+            calculator.classList.toggle("dark"); // Cambia el fondo de la calculadora
+            themeTogglerBtn.classList.toggle("active"); // Cambia el estilo del botón de cambio de tema
+            btnEqual.classList.toggle("btn-equal__light"); // Cambia el estilo del botón de igual
+            btnNumbers.forEach((btnNumber) =>
+                btnNumber.classList.toggle("btn-number__light") // Cambia el estilo de los botones numéricos
+            );
+        });
+    </script>
+
+</body>
+</html>

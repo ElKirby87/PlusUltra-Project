@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style type="text/css">
+        body {
+            background-image: url(../Resources/Unidad3Tema.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .tema {
+            text-align: center;
+            color: white;
+            font-family: 'Palatino Linotype';
+            font-size: 48px;
+            margin-top: 10px;
+        }
+
+        .subtema {
+            text-align: center;
+            color: #aac1ff;
+            font-family: 'Palatino Linotype';
+            font-size: 30px;
+        }
+
+        .contenido {
+            width: 80%;
+            margin: 0, auto;
+        }
+
+            .contenido p, ul {
+                text-align: justify;
+                font-size: 24px;
+                color: white;
+            }
+    </style>
+</head>
+<body>
+    <p class="tema">Líquidos</p>
+    <p class="subtema">Características de los Líquidos</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <ul>
+                    <li>
+                        Cambio de forma: sin que existan furrzas resistivas que los obliguen a recuperar la composición original de la masa
+                        diferenciándolos de un sólido de carácter deformable, que sí tienen fuerzas restitutivas.
+                    </li>
+                    <li>
+                        Dispersión molecular: pueden pasar de un estado a otro y, debido a su fluidez, si se les aplica una variable externa,
+                        como la temperatura, se puede concentrar esta dispersión.
+                    </li>
+                    <li>
+                        Densidad: pueden tener mayor o menor densidad en función a la cantidad de materia que hay en un volumen de fluido.
+                    </li>
+                    <li>
+                        Viscosidad: se trata de a resistencia que tienen los fluidos a ser deformados y que pudieron limitar su fluidez.
+                    </li>
+                    <li>
+                        Volumen: los fluidos líquidos suelen adoptar la forma del recipiente donde están contenidos.
+                    </li>
+                    <li>
+                        Presión: es la fuerza que la masa del fluido ejerce sobre los cuerpos que están sumergidos en él.
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Características de Presión</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <ul>
+                    <li>
+                        Fuerza por unidad de área: la presión se define como la fuerza ejercida por unidad de área sobre una superficie.
+                    </li>
+                    <li>
+                        Unidad de medida: la unidad de medida de la presión es el Pascal (Pa) en el Sistema Internacional de Unidades.
+                    </li>
+                    <li>
+                        Dirección: la presión se ejerce en todas las direcciones y es perpendicular a la superficie sobre la que se aplica.
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Tipos de Presión</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <ul>
+                    <li>
+                        Presión por hidrostática: La presión ejercida por un fluido en reposo sobre una superficie.
+                    </li>
+                    <li>
+                        Presión atmosférica: la presión ejercida por la atmósfera terrestre sobre la superficie de la tierra.
+                    </li>
+                    <li>
+                        Presión absoluta: la presión medida con respecto al vacío absoluto.
+                    </li>
+                    <li>
+                        Presión relativa: la presión medida con respecto a la presión atmosférica.
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Densidad</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    Es una propiedad física que describe la cantidad de masa que contiene un objeto o sustancia por unidad de volumen.
+                    En otras palabras, la densidad en una medida de la compactación o concentración de la masa en un determinado volumen.<br />
+                    La fórmula para calcular la densidad es:
+                </p>
+                <p id="formulas"></p>
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Peso Específico</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    Es una propiedad física que describe el peso de un objeto o sustancia por unidad de volumen. En otras palabras, el
+                    peso específico es una medida de la fuerza de la gravedad que actúa sobre un objeto o sustancia por unidad de volumen.
+                </p>
+                <p id="formulas1"></p>
+            </td>
+        </tr>
+    </table>
+    <script>
+        document.getElementById('formulas').innerHTML = "Densidad = \\( \\frac{Masa}{Volumen} \\)";
+        document.getElementById('formulas1').innerHTML = "Peso Específico = \\( \\frac{Peso}{Volumen} \\)";
+    </script>
+</body>
+</html>

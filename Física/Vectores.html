@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style type="text/css">
+        body {
+            background-image: url(../Resources/FisicaIndiceBackground.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .tema {
+            text-align: center;
+            color: white;
+            font-family: 'Palatino Linotype';
+            font-size: 48px;
+            margin-top: 10px;
+        }
+
+        .subtema {
+            text-align: center;
+            color: #aac1ff;
+            font-family: 'Palatino Linotype';
+            font-size: 30px;
+        }
+
+        .contenido {
+            width: 80%;
+            margin: 0, auto;
+        }
+
+        .contenido p, ul {
+            text-align: justify;
+            font-size: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <p class="tema">Vectores</p>
+    <p class="subtema">¿Qué es un vector?</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    En física y matemáticas, un vector es un segmento de una línea recta, dotado de un sentido,
+                    es decir, orientado dentro de un plano euclidiano bidimensional o tridimensional. O lo que
+                    es lo mismo: un vector es un elemento en un espacio vectorial.
+
+                    Los vectores permiten representar magnitudes físicas dotadas no sólo de intensidad, sino de
+                    dirección, como es el caso de la fuerza, la velocidad o el desplazamiento. Ese rasgo de contar
+                    con dirección es el que distingue a las magnitudes vectoriales de las escalares.
+
+                    Además, un vector puede representarse en un plano cartesiano mediante un conjunto de coordenadas
+                    (x,y), o en uno tridimensional (x,y,z). Los vectores se representan típicamente mediante una
+                    flecha dibujada por encima del símbolo empleado.
+                </p>
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Características</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    Los vectores, representados gráficamente, poseen las siguientes características:
+                    <ul>
+                        <li>
+                            Dirección. Definida como la recta sobre la cual se traza el vector, continuada infinitamente
+                            en el espacio.
+                        </li>
+                        <li>
+                            Módulo o amplitud. La longitud gráfica que equivale, dentro de un plano, a la magnitud del
+                            vector expresada numéricamente.Dirección. Definida como la recta sobre la cual se traza el vector,
+                            infinitamenteen el espacio.
+                        </li>
+                        <li>
+                            Sentido. Representado por la punta de la flecha que gráficamente representa al vector, indica
+                            el lugar geométrico hacia el cual se dirige el vector.
+                        </li>
+                        <li>
+                            Punto de aplicación. Correspondiente al lugar o punto geométrico en donde inicia el vector
+                            gráficamente.
+                        </li>
+                        <li>
+                            Nombre o denominación. Representado mediante una letra que acompaña al vector gráficamente
+                            representado, y que coincide con la magnitud que expresa o con la suma de los puntos de inicio
+                            y fin de su valor.
+                        </li>
+                    </ul>
+                </p>
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Sentido de un vector</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    El sentido de los vectores se representa gráficamente mediante una punta de flecha apuntando en alguna dirección.
+                    Esto representa hacia qué lado de la línea de acción (dirección) se dirige el vector, o sea, hacia dónde apunta.
+
+                    El sentido es sumamente importante a la hora de expresar magnitudes vectoriales, ya que puede determinar el
+                    tipo de operación o cálculo que es posible realizar con las mismas.
+                </p>
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Ejemplos de un vector</p>
+    <table align="center" class="imagenes">
+        <tr>
+            <td>
+                <img src="../Resources/VectoresExample1.jpg" height="300">
+            </td>
+            <td>
+                <img src="../Resources/VectoresExample2.jpg" height="300">
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Tipos de vectores</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    Hay dos formas con las que podemos medir una vector y son las siguientes:
+                    <ul>
+                        <li>
+                            <b>Vector polar:</b> Este vector nos da su dirección (Su angulo que esta inclinado desde
+                            los 0°) y su magnitud (La medida de la flecha).
+                        </li>
+                        <li>
+                            <b>Vector escalar:</b> Es aquel vector que nos dé sus datos de manera escalada, osea que nos proporcione
+                            su medida por medio de los componentes X y Y de un plano cartesiano.
+                        </li>
+                    </ul>
+                </p>
+                <br />
+                <p>
+                    Cuando se nos dé un problema donde tengamos que usar vectores, nuestro objetivo será hallar el vector resultante
+                    que es aquel que resulta despues de la aplicación de todos los vectores, ya sea sumando todos los componentes X y
+                    Y o graficandolos en un plano cartesiano.
+                </p>
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Método por Componentes</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    Como su nombre lo dice, este método utiliza solamente los componentes de X y Y de los vectores; así que, si vamos
+                    a usar este método hay que asegurarnos de que todos nuestros vectores estén con medidas escalar, como consecuencia,
+                    tendremos que convertir los vectores polares a escalares mediante funciones trigonometricas.
+                    Al tener todos nuestros vectores en escalara, tendremos que sumar todos los componentes en X y lo mismo para las Y
+                    para obtener nuestro vector resultante en escalar.<br />
+                    <b>NOTA: </b>Si nosotros ya conocemos de antemano los calculos relacionados con trigonometría, es decir, con los triángulos
+                    rectangulos, se nos facilitará. Un ejemplo es un vector escalar que tiene una distancia en X de 4 y una distancia en Y de 7,
+                    en este caso tendremos los dos catetos de un triángulo rectangulo y podremos obtener la magnitud (La hipotenusa) del
+                    triángulo formado; y, a su vez, podremos sacar su angulo usando la fórmula de la tangente.
+                </p>
+                <p id="formulas"></p>
+                <p id="formulas1"></p>
+            </td>
+        </tr>
+    </table>
+    <p class="subtema">Método por Polígono de Fuerzas</p>
+    <table align="center" class="contenido">
+        <tr>
+            <td>
+                <p>
+                    En este méto necesitaremos un transportador y una regla porque se necesitará graficar y trazar cada vector conforme su dirección
+                    y magnitud.
+                    El procedimiento es el siguente: primero tendremos que tener todos nuestros vectores en polar, con ángulo y una magnitud, luego
+                    pondremos el eje central de nuestro transportador en las cordenadas X:0, Y:0 de nuestro plano cartesiano y trazar nuestro primer vector.
+                    Cabe recalcar que tendremos que trazar los vectores en orden.
+                    Siguiendo esa instruccion, trazaremos nuestro siguiente vector en la punta del anterior, pero con nuestro transportador seguirá en la
+                    misma posición como si al final del primer vector se formara un segundo plano cartesiano donde haremos el siguiente vector.
+                    Repetiremos ese mismo procedimiento con todos nuestros vectores y hasta el último, mediremos desde la punta de nuestro último vector
+                    hasta el punto X:0, y:0 del plano cartesiano, obtenemos la distancia y el ángulo y ese será nuestro vector resultante.<br />
+                    <b>NOTA: </b>Los ángulos de los vectores siempre se empezarán a medir en el primer cuadrante del plano cartesiano al sentido opuesto
+                    a las manecillas del reloj.
+                    Como el método anterior, si queremos convertir nuestros vectores a polares tenemos que hacer unos cálculos relacionados con la
+                    trigonometría.
+                    Para obtener el componente en X tenemos que sacar la función coseno del angulo y el resultado multiplicarlo por la magnitud, como si
+                    despejaramos la formula del coseno; y, como es de adivinar, será igual con el componente de la Y, pero en vez de la función coseno, será
+                    la función seno por la magnitud.
+                </p>
+                <p>X = Cosθ * |A|</p>
+                <p>Y = Sinθ * |A|</p>
+            </td>
+        </tr>
+    </table>
+    <script>
+        document.getElementById('formulas').innerHTML = "|A| (Magnitud): \\(\\sqrt{x^2 + y^2}\\) ";
+        document.getElementById('formulas1').innerHTML = "θ (Dirección): \\(\\arctan\\left(\\frac{y}{x}\\right)\\)";
+    </script>
+</body>
+</html>
